@@ -1,6 +1,9 @@
 package com.example.sudoku;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -9,8 +12,32 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class HelloApplication extends Application {
+    private GridPane root = new GridPane();
+    private TextField[][] cells = new TextField[9][9];
+
+
+    Button btn1 = new Button("Řešení");
+    Button btn2 = new Button("Restart");
+
+
+
+    public void initialize() {
+        for (int row = 0; row < 9; row++) {
+            for (int col = 0; col < 9; col++) {
+                TextField cell = new TextField();
+                cell.setPrefWidth(50);
+                cell.setPrefHeight(50);
+                cell.setText("");
+                root.add(cell, col, row);
+                cells[row][col] = cell;
+            }
+        }
+    }
+
+
 
 
     @Override
@@ -19,20 +46,16 @@ public class HelloApplication extends Application {
         stage.setTitle("Sudoku Time!");
 
 
-        GridPane root = new GridPane();
-        int o =0;
-        int l =0;
-        for (int i =0;i<81;i++) {
-            TextField txt = new TextField();
-            if (o<9) {
-                root.add(txt, o, l);
-                o++;
-            }else {
-                l++;
-                o=0;
-                i--;
-            }
-        }
+        btn2.setOnAction(event -> {
+            initialize();
+        });
+        btn1.setOnAction(event -> {
+
+        });
+        initialize();
+
+        root.add(btn1, 3,12,2,1);
+        root.add(btn2, 5,12,2,1);
 
         Scene scene = new Scene(root, 320, 240);
 
