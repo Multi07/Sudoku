@@ -20,19 +20,17 @@ public class HelloApplication extends Application {
 
 
         GridPane root = new GridPane();
-        //Nefunguje
         int o =0;
         int l =0;
         for (int i =0;i<81;i++) {
             TextField txt = new TextField();
-            if (o<8) {
+            if (o<9) {
                 root.add(txt, o, l);
                 o++;
             }else {
                 l++;
                 o=0;
-                root.add(txt,o,l);
-
+                i--;
             }
         }
 
