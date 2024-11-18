@@ -1,9 +1,6 @@
 package com.example.sudoku;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,6 +12,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class HelloApplication extends Application {
+
+    ArrayList<Integer> list = new ArrayList<>();
     private GridPane root = new GridPane();
     private TextField[][] cells = new TextField[9][9];
 
@@ -46,13 +45,25 @@ public class HelloApplication extends Application {
         stage.setTitle("Sudoku Time!");
 
 
+
         btn2.setOnAction(event -> {
-            initialize();
+            for (int row = 0; row < 9; row++) {
+                for (int col = 0; col < 9; col++) {
+                    cells[row][col].setText("");
+                }
+            }
         });
         btn1.setOnAction(event -> {
-
+            System.out.println("Řešení Sudoku není implementováno");
+            for (int row = 0; row < 9; row++) {
+                for (int col = 0; col < 9; col++) {
+                    cells[row][col].getText();
+                }
+            }
         });
+
         initialize();
+
 
         root.add(btn1, 3,12,2,1);
         root.add(btn2, 5,12,2,1);
