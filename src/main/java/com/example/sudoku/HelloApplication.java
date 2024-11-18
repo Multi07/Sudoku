@@ -18,11 +18,8 @@ public class HelloApplication extends Application {
     private GridPane root = new GridPane();
     private TextField[][] cells = new TextField[9][9];
 
-
     Button btn1 = new Button("Řešení");
     Button btn2 = new Button("Restart");
-
-
 
     public void initialize() {
         for (int row = 0; row < 9; row++) {
@@ -37,14 +34,10 @@ public class HelloApplication extends Application {
         }
     }
 
-
-
-
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         stage.setTitle("Sudoku Time!");
-
 
         btn2.setOnAction(event -> {
             initialize();
@@ -62,7 +55,6 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
     public static void main(String[] args) {
         launch();
     }
