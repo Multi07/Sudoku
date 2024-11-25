@@ -1,9 +1,8 @@
 package com.example.sudoku;
 
+import com.example.sudoku.backend.Sudoku;
+import com.example.sudoku.backend.SudokuSolver;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -30,34 +29,35 @@ public class HelloApplication extends Application {
                 TextField cell = new TextField();
                 cell.setPrefWidth(50);
                 cell.setPrefHeight(50);
-                cell.setText("");
+                cell.setText("0");
                 root.add(cell, col, row);
                 cells[row][col] = cell;
             }
         }
     }
-
-
-
-
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         stage.setTitle("Sudoku Time!");
-
-
         btn2.setOnAction(event -> {
             for (int row = 0; row < 9; row++) {
                 for (int col = 0; col < 9; col++) {
-                    cells[row][col].setText("");
+                    cells[row][col].setText("0");
                 }
             }
         });
         btn1.setOnAction(event -> {
             System.out.println("Řešení Sudoku není implementováno");
+            Sudoku s = new Sudoku();
             for (int row = 0; row < 9; row++) {
                 for (int col = 0; col < 9; col++) {
-                    cells[row][col].getText();
+                    s.board[col][row] = Integer.parseInt(cells[col][row].getText());
+                }
+            }
+            SudokuSolver.solveSudoku(s);
+            for (int row = 0; row < 9; row++) {
+                for (int col = 0; col < 9; col++) {
+                    cells[col][row].setText(String.valueOf(s.board[col][row]));
                 }
             }
         });
