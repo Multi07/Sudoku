@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class HelloApplication extends Application {
     private GridPane root = new GridPane();
@@ -47,19 +48,20 @@ public class HelloApplication extends Application {
             }
         });
         btn1.setOnAction(event -> {
-            System.out.println("Řešení Sudoku není implementováno");
             Sudoku s = new Sudoku();
             for (int row = 0; row < 9; row++) {
                 for (int col = 0; col < 9; col++) {
                     s.board[col][row] = Integer.parseInt(cells[col][row].getText());
                 }
             }
+            System.out.println(Arrays.deepToString(s.board));
             SudokuSolver.solveSudoku(s);
             for (int row = 0; row < 9; row++) {
                 for (int col = 0; col < 9; col++) {
                     cells[col][row].setText(String.valueOf(s.board[col][row]));
                 }
             }
+            System.out.println(Arrays.deepToString(s.board));
         });
         initialize();
 
