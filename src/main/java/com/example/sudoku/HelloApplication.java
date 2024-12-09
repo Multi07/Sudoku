@@ -24,6 +24,8 @@ public class HelloApplication extends Application {
 
 
 
+
+
     public void initialize() {
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
@@ -33,6 +35,13 @@ public class HelloApplication extends Application {
                 cell.setText("0");
                 root.add(cell, col, row);
                 cells[row][col] = cell;
+                if ((row/3+col/3) %2 == 0) {
+                    cell.getStyleClass().add("cell-dark");
+                }
+                else {
+                    cell.getStyleClass().add("cell-light");
+                }
+
             }
         }
     }
@@ -63,12 +72,14 @@ public class HelloApplication extends Application {
             }
             System.out.println(Arrays.deepToString(s.board));
         });
+
         initialize();
 
-        root.add(btn1, 3,12,2,1);
+        root.add(btn1, 2,12,2,1);
         root.add(btn2, 5,12,2,1);
 
-        Scene scene = new Scene(root, 320, 240);
+        Scene scene = new Scene(root, 400, 420);
+        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 
         stage.setScene(scene);
         stage.show();
